@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+set -o errexit
+
+# Step 1: Create Laravel project if not exists
+if [ ! -d "./src" ]; then
+  echo "📦 Creating Laravel project..."
+  docker run --rm \
+    -v "$(pwd):/app" \
+    composer create-project laravel/laravel src --prefer-dist
+else
+  echo -e "\033[31m❌ Laravel project already exists, skipping creation.\033[0m" >&2
+  exit 1
+fi
+
+# Step 2: Start containers
+echo "🐳 Starting Docker containers..."
+
+docker compose up -d --build
+
+# Step 3: Configure Laravel .env
+echo "⚙️ Configuring Laravel environment..."
+
+cp .env src/.env
+
+# Step 4: Run Composer install & Laravel setup
+echo "📦 Installing Composer dependencies..."
+
+docker exec -it phpfpm composer install
+
+echo "🔑 Generating Laravel application key..."
+
+docker exec -it phpfpm php artisan key:generate
+
+echo "🗄️ Running database migrations..."
+
+docker exec -it phpfpm php artisan migrate
+
+echo "✅ Laravel setup complete!"

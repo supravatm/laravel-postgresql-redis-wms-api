@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+
+set -a
+source "$PROJECT_ROOT/.env"
+set +a
+
+docker compose exec postgres \
+    psql -U "$POSTGRES_USER" -d "$POSTGRES_DB"
