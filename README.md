@@ -40,11 +40,10 @@ This project implements a small Warehouse Management System focused on inventory
 ## Installation & Configuration
 
 Clone the repository, install the backend dependencies, configure the environment, and start the required PostgreSQL and Redis services.
-
 | Commands                                                                      | Description                                     |
 | ----------------------------------------------------------------------------- | ----------------------------------------------- |
-| `git clone <repository-url> wms` | Clone the WMS repository                   |
-| `cp .env.example .env`                                                        | Create the environment configuration file       |
+| `git clone <repository-url> wms` 						| Clone the WMS repository                   	  |
+| `cp .env.example .env`                                                        | Required for Docker Compose setup               |
 | `docker compose config`                                                       | Validate the Docker Compose configuration       |
 | `docker compose up -d --build`                                                | Build and start Docker containers               |
 | `docker compose up -d`                                                        | Start Docker containers in detached mode        |
@@ -63,6 +62,7 @@ Clone the repository, install the backend dependencies, configure the environmen
 | `\dt`                                                                         | List all PostgreSQL database tables             |
 | `php artisan serve --host=0.0.0.0 --port=8000`                                | Run Laravel locally                             |
 | `docker compose down`                                                         | Stop and remove Docker containers               |
+| `DB_CONNECTION=pgsql` `DB_HOST=postgres`<br>`DB_PORT=5432` `DB_DATABASE=wms`<br>`DB_USERNAME=wms` `DB_PASSWORD=wms`<br>`CACHE_STORE=redis`<br>`QUEUE_CONNECTION=redis` | Update these values in the Laravel `.env` file. |
 
 
 ## Usage
