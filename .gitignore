@@ -5,6 +5,8 @@
 !/README.md
 !/.gitignore
 
+!/bin/
+!/bin/*
 !/src/
 !/docker/
 !/.github/

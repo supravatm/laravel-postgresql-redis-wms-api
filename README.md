@@ -63,7 +63,20 @@ Clone the repository, install the backend dependencies, configure the environmen
 | `php artisan serve --host=0.0.0.0 --port=8000`                                | Run Laravel locally                             |
 | `docker compose down`                                                         | Stop and remove Docker containers               |
 | `DB_CONNECTION=pgsql` `DB_HOST=postgres`<br>`DB_PORT=5432` `DB_DATABASE=wms`<br>`DB_USERNAME=wms` `DB_PASSWORD=wms`<br>`CACHE_STORE=redis`<br>`QUEUE_CONNECTION=redis` | Update these values in the Laravel `.env` file. |
+---
 
+## ⚡ Available Custom Commands
+
+| Command         | Purpose                                        |
+| --------------- | ---------------------------------------------- |
+| `bin/start`     | Start/create Docker containers                 |
+| `bin/stop`      | Stop Docker containers without removing them   |
+| `bin/down`      | Stop and remove Docker containers              |
+| `bin/bash`      | Open a Bash shell inside the PHP-FPM container. <br> e.g (`bin/bash -c 'php artisan migrate'`) |
+| `bin/cli`       | Execute Laravel Artisan commands. e.g (`bin/cli migrate`)              |
+| `bin/redis-cli` | Execute Redis CLI commands e.g (`bin/redis-cli ping`)                      |
+| `bin/psql`      | Connect to PostgreSQL using `.env` credentials             |
+---
 
 ## Usage
 
